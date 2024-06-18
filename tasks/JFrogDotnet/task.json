@@ -47,8 +47,7 @@
             "name": "customCommand",
             "type": "string",
             "label": "Custom command",
-            "defaultValue": "",
-            "helpMarkDown": "The custom command which will be passed to .NET Core CLI for execution. Note that commands that require deploying are not supported, and that build-info collection is not available for custom commands.",
+            "helpMarkDown": "The custom command which will be passed to .NET Core CLI for execution (for example: 'pack'). Note that commands that require deployment are not supported, and that build-info collection is not available for custom commands.",
             "required": true,
             "visibleRule": "command=custom"
         },
@@ -57,7 +56,7 @@
             "type": "string",
             "label": "Arguments",
             "defaultValue": "",
-            "helpMarkDown": "The arguments which will be passed to .NET Core CLI for execution. Arguments should be quoted, and space separated.",
+            "helpMarkDown": "The arguments which will be passed to .NET Core CLI for execution (for example: '--no-restore' '--v:d'). Arguments should be quoted, and space separated.",
             "required": false,
             "visibleRule": "command=restore || command=custom"
         },
