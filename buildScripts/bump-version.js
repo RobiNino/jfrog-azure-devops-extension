@@ -38,14 +38,12 @@ function assertVersion() {
     let vssExtension = fs.readFileSync('vss-extension.json', 'utf8');
     let vssExtensionJson = JSON.parse(vssExtension);
     let oldExtensionVersionSplit = vssExtensionJson.version.split('.');
-    let oldMinor = parseInt(oldExtensionVersionSplit[1]);
-    let oldPatch = parseInt(oldExtensionVersionSplit[2]);
-    let newMinor = parseInt(requestedVersionSplit[1]);
-    let newPatch = parseInt(requestedVersionSplit[2]);
+    const [oldMajor, oldMinor, oldPatch] = oldExtensionVersionSplit.map(Number);
+    const [newMajor, newMinor, newPatch] = requestedVersionSplit.map(Number);
     let isMinorRelease = oldMinor < newMinor && newPatch === 0;
     let isPatchRelease = oldMinor === newMinor && oldPatch < newPatch;
     assert.ok(isMinorRelease || isPatchRelease, 'Input version must be bigger than current version');
-    assert.strictEqual(oldExtensionVersionSplit[0], requestedVersionSplit[0], 'Upgrading Major version using this script is forbidden');
+    assert.strictEqual(oldMajor, newMajor, 'Upgrading Major version using this script is forbidden');
 }
 
 /**
